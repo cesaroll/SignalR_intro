@@ -11,8 +11,6 @@ namespace SR
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            //routes.MapConnection<MyEndPoint>("echo", "echo/{*operaton}");
-
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(

@@ -26,5 +26,10 @@ namespace SR.Controllers
 
             return View();
         }
+
+        public ActionResult PersistentConnectionApi()
+        {
+            return View();
+        }
     }
 }

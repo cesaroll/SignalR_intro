@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "PersistentConnectionApi";
+}
+
+<h2>PersistentConnectionApi</h2>
+
+<h3>Example</h3>
+
+<div>
+    <input type="text" id="msg" />
+    <input type="button" id="broadcast" value="Broadcast" />
+    <ul id="messages"></ul>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        // Setup connection
+        var connection = $.connection('/echo');
+
+        // Start Connection
+        connection.start();
+
+        // Send Message to server
+        $("#broadcast").click(function () {
+            connection.send($("#msg").val());
+        });
+
+        // Received Message
+        connection.received(function (data) {
+            $("#messages").append("<li>" + data + "</li>");
+        });
+
+    </script>
+    
+}
