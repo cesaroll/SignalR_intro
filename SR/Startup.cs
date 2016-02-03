@@ -11,8 +11,11 @@ namespace SR
         {
             ConfigureAuth(app);
 
-            //app.MapConnection<MyEndPoint>("echo/{*operation}");
+            
             app.MapSignalR<MyEndPoint>("/echo");
+
+            app.MapSignalR();
+
 
         }
     }

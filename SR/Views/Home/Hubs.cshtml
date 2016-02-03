@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Hubs";
+}
+
+<h2>Hubs</h2>
+
+<input type="text" id="msg"/>
+<input type="button" id="broadcast" value="Broadcast"/>
+
+<ul id="messages"></ul>
+
+@section scripts {
+
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            // proxy on fly
+            //var myhub = $.connection.myhub; // Notice Camel Case required in JS MyHub.cs => myHub
+
+            var myhub = $.connection.MyHub; // Using MyHub is posible if the Class has the HubName attribute set.
+
+            
+            myhub.client.addMessage = function (message) {
+                $('#messages').append('<li>' + message + '</li>');
+            };
+
+            $('#broadcast').click(function () {
+                myhub.server.Send($('#msg').val());                
+            });
+
+            // Start connection
+            $.connection.hub.start();
+
+        });
+    </script>    
+    
+}
