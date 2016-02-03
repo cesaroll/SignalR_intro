@@ -15,6 +15,11 @@ namespace SR.Conn
         {
             // Call addMessage
             Clients.All.addMessage(message);
+
+            // Special server to Client call
+            Clients.All.showAlert(message);
+
         }
+        
     }
 }

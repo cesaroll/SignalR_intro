@@ -26,6 +26,11 @@
                 $('#messages').append('<li>' + message + '</li>');
             };
 
+            //Server Calling the client
+            myhub.client.showAlert = function (message) {
+                alert('Message: ' + message);
+            };
+
             $('#broadcast').click(function () {
                 myhub.server.Send($('#msg').val());                
             });
