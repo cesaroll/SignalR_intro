@@ -10,6 +10,7 @@
 <div>
     <input type="text" id="msg" />
     <input type="button" id="broadcast" value="Broadcast" />
+    <!--<input type="button" id="send" value="Send" />-->
     <ul id="messages"></ul>
 </div>
 
@@ -18,19 +19,30 @@
     <script type="text/javascript">
         // Setup connection
         var connection = $.connection('/echo');
+        var conn2 = $.connection('/echo2');
 
         // Start Connection
         connection.start();
+        conn2.start();
+
+        function addMsg(data) {
+            $("#messages").append("<li>" + data + "</li>");
+        }
 
         // Send Message to server
         $("#broadcast").click(function () {
-            connection.send($("#msg").val());
+            connection.send($("#msg").val()); // Broadcast
+            conn2.send($("#msg").val()); // Send
         });
 
         // Received Message
         connection.received(function (data) {
             $("#messages").append("<li>" + data + "</li>");
         });
+
+        conn2.received(addMsg);
+
+        
 
     </script>
     

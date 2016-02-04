@@ -13,6 +13,7 @@ namespace SR
 
             
             app.MapSignalR<MyEndPoint>("/echo");
+            app.MapSignalR<MyEndPoint2>("/echo2");
 
             app.MapSignalR();
 
