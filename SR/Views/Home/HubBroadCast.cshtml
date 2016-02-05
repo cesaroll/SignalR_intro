@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "HubBroadCast";
+}
+
+<h2>HubBroadCast</h2>
+
+<div>
+    <input type="text" id="msg" value="Hola" />
+    <input type="button" id="broadcast" value="Broadcast" />
+    <ul id="messages"></ul>
+</div>
+
+@section scripts {
+    
+    <script type="text/javascript">
+
+        // Setup Connection
+        var conn = $.connection('/echo');
+
+        // Start Connection
+        conn.start();
+
+        // Add message to messages list
+        function addMsg(data) {
+            $("#messages").append("<li>" + data + "</li>");
+        }
+
+        // Send Message to server
+        $("#broadcast").click(function () {
+            conn.send( $("#msg").val() );
+        });
+
+        // Received Message
+        conn.received(addMsg);
+
+
+    </script>    
+    
+}
