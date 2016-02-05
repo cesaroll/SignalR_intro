@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "HubGroups";
+}
+
+<h2>HubGroups</h2>
+
+
+<div>
+    <input type="text" id="msg" value="Hello Hub Group" />
+    <input type="button" id="broadcast" value="Broadcast" />
+    <ul id="messages"></ul>
+</div>
+
+@section scripts {
+
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        //Connect to my hub
+        var myhub = $.connection.MyHubGroups;
+        var myGroup = "West";
+
+        // Define add message function
+        function addMsg(msg) {
+            $("#messages").append("<li>" + msg + "</li>");
+        }
+
+        // Assign function
+        myhub.client.addMessage = addMsg;
+
+        // On Click Broadcast
+        $("#broadcast").click(function () {
+            myhub.server.Send(myGroup, $("#msg").val() );
+        });
+
+        //start connection
+        $.connection.hub.start(function () {
+            myhub.server.JoinGroup(myGroup);
+        });
+
+
+    </script>
+
+}
