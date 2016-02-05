@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "HubMethods";
+}
+
+<h2>HubMethods</h2>
+
+<div>
+    <input type="text" id="msg" value="Hello Hub Method" />
+    <input type="button" id="broadcast" value="Broadcast" />
+    <ul id="messages"></ul>
+</div>
+
+@section scripts {
+
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        
+        //Connect to my hub
+        var myhub = $.connection.MyHubMethods;
+        
+        // Define add message function
+        function addMsg(msg) {
+            $("#messages").append("<li>" + msg + "</li>");
+        }
+        
+        // Assign function
+        myhub.client.addMessage = addMsg;
+        
+        // On Click Broadcast
+        $("#broadcast").click(function () {
+            myhub.server.Send( $("#msg").val() );
+        });
+        
+        //start connection
+        $.connection.hub.start();
+        
+
+    </script>
+    
+}

@@ -52,5 +52,10 @@ namespace SR.Controllers
         {
             return View();
         }
+
+        public ActionResult HubMethods()
+        {
+            return View();
+        }
     }
 }
