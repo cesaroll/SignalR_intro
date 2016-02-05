@@ -11,7 +11,7 @@ namespace SR.Conn
     {
         protected override Task OnReceived(IRequest request, string connectionId, string data)
         {
-            // Sends message to originator only                             "<span style='color: red'> disconnected.</span>"
+            // Sends message to originator only                             
             return Connection.Send(connectionId, "Return to Originator Only: <span style='color: orange'>" + data + "</span>");
         }
     }

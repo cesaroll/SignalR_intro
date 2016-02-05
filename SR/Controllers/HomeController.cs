@@ -32,6 +32,11 @@ namespace SR.Controllers
             return View();
         }
 
+        public ActionResult Groups()
+        {
+            return View();
+        }
+
         public ActionResult Hubs()
         {
             return View();

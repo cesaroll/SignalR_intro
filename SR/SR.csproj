@@ -177,6 +177,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Conn\MyEndPoint.cs" />
     <Compile Include="Conn\MyEndPoint2.cs" />
+    <Compile Include="Conn\MyEndPointGroups.cs" />
     <Compile Include="Conn\MyHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -249,6 +250,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\PersistentConnectionApi.cshtml" />
     <Content Include="Views\Home\Hubs.cshtml" />
+    <Content Include="Views\Home\Groups.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
