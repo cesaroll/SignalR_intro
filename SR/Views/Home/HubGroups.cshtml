@@ -7,6 +7,10 @@
 
 
 <div>
+    <input type="text" id="group" value="West" />
+    <input type="button" id="joingroup" value="Join Group" />
+    <input type="button" id="leavegroup" value="Leave Group" />
+    <br>
     <input type="text" id="msg" value="Hello Hub Group" />
     <input type="button" id="broadcast" value="Broadcast" />
     <ul id="messages"></ul>
@@ -20,8 +24,7 @@
 
         //Connect to my hub
         var myhub = $.connection.MyHubGroups;
-        var myGroup = "West";
-
+        
         // Define add message function
         function addMsg(msg) {
             $("#messages").append("<li>" + msg + "</li>");
@@ -32,12 +35,22 @@
 
         // On Click Broadcast
         $("#broadcast").click(function () {
-            myhub.server.Send(myGroup, $("#msg").val() );
+            myhub.server.Send($('#group').val(), $("#msg").val());
+        });
+
+        // On click Join Group
+        $('#joingroup').click(function () {
+            myhub.server.JoinGroup( $('#group').val() );
+        });
+
+        // On Click Leave Group
+        $('#leavegroup').click(function () {
+            myhub.server.LeaveGroup( $('#group').val() );
         });
 
         //start connection
         $.connection.hub.start(function () {
-            myhub.server.JoinGroup(myGroup);
+            myhub.server.JoinGroup($('#group').val());
         });
 
 
