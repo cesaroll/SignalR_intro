@@ -181,6 +181,7 @@
     <Compile Include="Conn\MyHub.cs" />
     <Compile Include="Conn\MyHubGroups.cs" />
     <Compile Include="Conn\MyHubMethods.cs" />
+    <Compile Include="Conn\MyHubTypes.cs" />
     <Compile Include="Conn\MyNotifier.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
