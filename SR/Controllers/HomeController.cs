@@ -63,5 +63,10 @@ namespace SR.Controllers
         {
             return View();
         }
+
+        public ActionResult NoProxy()
+        {
+            return View();
+        }
     }
 }

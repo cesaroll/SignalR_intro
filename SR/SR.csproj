@@ -181,6 +181,7 @@
     <Compile Include="Conn\MyHub.cs" />
     <Compile Include="Conn\MyHubGroups.cs" />
     <Compile Include="Conn\MyHubMethods.cs" />
+    <Compile Include="Conn\MyHubNoProxy.cs" />
     <Compile Include="Conn\MyHubTypes.cs" />
     <Compile Include="Conn\MyNotifier.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Views\Home\HubBroadCast.cshtml" />
     <Content Include="Views\Home\HubMethods.cshtml" />
     <Content Include="Views\Home\HubGroups.cshtml" />
+    <Content Include="Views\Home\NoProxy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "NoProxy";
+}
+
+<h2>NoProxy</h2>
+
+<div>
+    <input type="text" id="msg" value="Hello Hub No Proxy" />
+    <input type="button" id="broadcast" value="Broadcast" />
+    <ul id="messages"></ul>
+</div>
+
+@section scripts {
+    
+    <script type="text/javascript">
+
+        var conn = $.hubConnection();
+
+        var proxy = conn.createHubProxy("MyHubNoProxy"); //createProxy('MyHubNoProxy');
+
+        conn.start().done(function() {
+            alert('Connected!');
+            repeater();
+        });
+
+        proxy.on("addMessage", function(msg) {
+            $('#messages').append("<li>" + msg + "</li>");
+        });
+
+        function repeater() {
+
+            var myInt = setInterval(function() {
+                proxy.invoke('send', $('#msg').val() + ' - ' + new Date);
+            }, 1000);
+
+            setTimeout(function() {
+                clearInterval(myInt);
+            }, 10000);
+
+        }
+
+    </script>
+
+}
