@@ -22,5 +22,11 @@ namespace SR.Conn
 
             context.Groups.Send(group, msg);
         }
+
+        public void NotifyHub(string msg)
+        {
+            var context = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+            context.Clients.All.addMessage(msg);
+        }
     }
 }

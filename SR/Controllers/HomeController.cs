@@ -15,6 +15,7 @@ namespace SR.Controllers
             MyNotifier notifier = new MyNotifier();
             notifier.Notify("<b>Someone accessed the front page!</b>");
 
+            notifier.NotifyHub("<b>HUB: Someone accessed the front page!</b>");
 
             return View();
         }
