@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "MyDataStream";
+}
+
+<h2>MyDataStream (<span id="groupname"></span>)</h2>
+
+<div>
+    <input type="text" id="msg" />
+    <input type="button" id="broadcast" value="Broadcast" />
+    <ul id="messages"></ul>
+</div>
+
+@section scripts {
+
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            // Setup connection
+            var conn = $.connection.MyDataStream;
+            var chooseGroup = getRandom(1, 2);
+            var group = "West";
+
+            if (chooseGroup == 1) {
+                group = "East";
+            }
+
+            var color = "blue";
+
+            if (group == "East") {
+                color = "green";
+            }
+
+            $("#groupname").text(group);
+
+            conn.client.addMessage = function(message) {
+                $('#messages').append('<li>' + message + '</li>');
+            };
+
+            $('#broadcast').click(function() {
+                conn.server.Send($('#msg').val());
+            });
+
+            // Start connection
+            $.connection.hub.start(function() {
+                conn.server.JoinGroup(group);
+                repeater();
+            });
+
+            function getRandom(a, b) {
+                var value = Math.floor(Math.random() * b) + a;
+                return value;
+            }
+
+            function repeater() {
+                var myint = setInterval(function() {
+                    conn.server.SendIndividual("Ping - " + getRandom(1, 1000));
+                }, getRandom(1000, 5000));
+
+                setTimeout(function() {
+                    conn.server.SendGroup("<span style='color: " + color + "'>This is a group message (" + group + ")</span>", group);
+                }, 1000);
+
+                setTimeout(function() {
+                    conn.server.SendIndividual("<span style='color: red'>You have 5 seconds left...</span>");
+                });
+
+                setTimeout(function() {
+                    conn.server.SendIndividual("<span style='color: red; font-weight: bold;'>Done...</span>");
+                    clearInterval(myint);
+                }, 30000);
+            }
+
+
+        });
+
+    </script>
+
+}

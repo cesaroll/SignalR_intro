@@ -175,6 +175,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Conn\MyDataStream.cs" />
     <Compile Include="Conn\MyEndPoint.cs" />
     <Compile Include="Conn\MyEndPoint2.cs" />
     <Compile Include="Conn\MyEndPointGroups.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\Home\HubMethods.cshtml" />
     <Content Include="Views\Home\HubGroups.cshtml" />
     <Content Include="Views\Home\NoProxy.cshtml" />
+    <Content Include="Views\Home\MyDataStream.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

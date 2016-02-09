@@ -68,5 +68,10 @@ namespace SR.Controllers
         {
             return View();
         }
+
+        public ActionResult MyDataStream()
+        {
+            return View();
+        }
     }
 }
